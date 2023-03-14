@@ -1,0 +1,6 @@
+* "companion object" we use this to make a static variable.
+* lazy means, we only initialize this once (singleton)
+* lateinit can only be used with a var property whereas lazy will always be used with val property
+* suspend fun fro coroutines
+* We can use "Object class" for a singleton class.
+* "diffList" when we do notifyDataChange() only the changes item will be refreshed not the whole list.
