@@ -8,7 +8,6 @@ import com.androiddevs.newsapp.models.Article
     entities = [Article::class],
     version = 1
 )
-
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
 
