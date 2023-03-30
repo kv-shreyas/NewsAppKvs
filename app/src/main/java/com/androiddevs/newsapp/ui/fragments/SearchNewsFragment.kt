@@ -15,6 +15,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentSearchNewsBinding.inflate(layoutInflater)
         viewModel = (activity as NewsActivity).viewModel
 
     }

@@ -14,6 +14,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentArticleBinding.inflate(layoutInflater)
         viewModel = (activity as NewsActivity).viewModel
+
     }
 }
