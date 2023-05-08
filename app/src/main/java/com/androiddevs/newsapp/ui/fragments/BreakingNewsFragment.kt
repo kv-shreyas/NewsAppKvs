@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.androiddevs.newsapp.R
 import com.androiddevs.newsapp.adapters.NewsAdapter
 import com.androiddevs.newsapp.databinding.FragmentBreakingNewsBinding
 import com.androiddevs.newsapp.ui.NewsActivity
@@ -34,6 +36,24 @@ class BreakingNewsFragment : Fragment() {
         viewModel = (activity as NewsActivity).viewModel
 
         setUpRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            Log.i(
+                TAG,
+                "onViewCreated: newsAdapter.setOnItemClickListener\n" + it.url + "\n" + it.title + "\n" + it.urlToImage + "\n" + it.description + "\n"
+                        + it.publishedAt + "\n" + it.author + "\n" + it.content
+            )
+            val author = it.author ?: "Unknown" // use "Unknown" as default if author is null
+            val content = it.content ?: "" // use empty string as default if content is null
+//            val message = "${it.publishedAt}\n$author\n$content"
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
