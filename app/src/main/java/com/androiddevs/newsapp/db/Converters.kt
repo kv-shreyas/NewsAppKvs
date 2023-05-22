@@ -1,14 +1,13 @@
 package com.androiddevs.newsapp.db
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.androiddevs.newsapp.models.Source
 
 class Converters {
 
     @TypeConverter
     fun fromSource(source: Source):String{
-        return source.name
+        return source.name.toString()
     }
 
     @TypeConverter

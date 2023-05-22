@@ -8,8 +8,8 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.androiddevs.mvvmnewsapp"
-        minSdkVersion 21
+        applicationId "com.androiddevs.newsapp"
+        minSdkVersion 29
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
