@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.androiddevs.newsapp.databinding.FragmentArticleBinding
 import com.androiddevs.newsapp.ui.NewsActivity
 import com.androiddevs.newsapp.ui.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : Fragment() {
     lateinit var viewModel: NewsViewModel
@@ -33,6 +34,11 @@ class ArticleFragment : Fragment() {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view, "This article is saved.", Snackbar.LENGTH_SHORT).show()
         }
 
     }
