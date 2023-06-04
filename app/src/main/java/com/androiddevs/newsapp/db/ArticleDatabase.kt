@@ -1,6 +1,4 @@
 package com.androiddevs.newsapp.db
-
-import android.content.Context
 import androidx.room.*
 import com.androiddevs.newsapp.models.Article
 
@@ -13,7 +11,7 @@ abstract class ArticleDatabase : RoomDatabase() {
 
     abstract fun getArticleDao(): ArticleDao
 
-    companion object{
+   /* companion object{
 
         @Volatile //so that other threads can immediately see when it changes
         private var instance: ArticleDatabase?=null
@@ -25,5 +23,5 @@ abstract class ArticleDatabase : RoomDatabase() {
 
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext, ArticleDatabase::class.java,"article_db.db").build()
-    }
+    }*/
 }

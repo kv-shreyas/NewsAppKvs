@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.newsapp.databinding.ItemArticlePreviewBinding
 import com.androiddevs.newsapp.models.Article
 import com.bumptech.glide.Glide
+import javax.inject.Inject
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter @Inject constructor() : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {

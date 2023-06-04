@@ -3,8 +3,9 @@ package com.androiddevs.newsapp.repository
 import com.androiddevs.newsapp.api.RetrofitInstance
 import com.androiddevs.newsapp.db.ArticleDatabase
 import com.androiddevs.newsapp.models.Article
+import javax.inject.Inject
 
-class NewsRepository(var db: ArticleDatabase) {
+class NewsRepository @Inject constructor(var db: ArticleDatabase) {
 
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
         RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)

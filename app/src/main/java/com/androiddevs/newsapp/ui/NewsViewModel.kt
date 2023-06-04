@@ -1,18 +1,25 @@
 package com.androiddevs.newsapp.ui
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddevs.newsapp.models.Article
 import com.androiddevs.newsapp.models.NewsResponse
 import com.androiddevs.newsapp.repository.NewsRepository
 import com.androiddevs.newsapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import javax.inject.Inject
 
-class NewsViewModel(app: Application, var newsRepository: NewsRepository) : AndroidViewModel(app) {
+@HiltViewModel
+class NewsViewModel @Inject constructor(
+    @ApplicationContext app: Context,
+    var newsRepository: NewsRepository
+) : ViewModel() {
 
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData();
     var breakingNewsPage = 1;

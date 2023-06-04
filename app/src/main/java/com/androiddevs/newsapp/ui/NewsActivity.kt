@@ -7,9 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.androiddevs.newsapp.R
 import com.androiddevs.newsapp.databinding.ActivityNewsBinding
-import com.androiddevs.newsapp.db.ArticleDatabase
-import com.androiddevs.newsapp.repository.NewsRepository
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
 
     lateinit var viewModel: NewsViewModel
@@ -20,14 +20,17 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+        /* val newsRepository = NewsRepository(ArticleDatabase(this))
+         val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
+         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+ */
+        viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+
 //        binding.bottomNavigationView.setupWithNavController(binding.newsNavHostFragment.findNavController())
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
-//        val navHostFragment = binding.newsNavHostFragment as NavHostFragment
+//      val navHostFragment = binding.newsNavHostFragment as NavHostFragment
         val navController = navHostFragment.navController
         navController.setGraph(R.navigation.news_nav_graph)
         binding.bottomNavigationView.setupWithNavController(navController)

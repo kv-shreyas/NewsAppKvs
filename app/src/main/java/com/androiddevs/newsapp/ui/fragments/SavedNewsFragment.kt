@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,28 +13,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.newsapp.R
 import com.androiddevs.newsapp.adapters.NewsAdapter
 import com.androiddevs.newsapp.databinding.FragmentSavedNewsBinding
-import com.androiddevs.newsapp.ui.NewsActivity
 import com.androiddevs.newsapp.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SavedNewsFragment : Fragment() {
-    lateinit var viewModel: NewsViewModel
+
+    private val viewModel: NewsViewModel by viewModels()
     private lateinit var binding: FragmentSavedNewsBinding
-    private lateinit var newsAdapter: NewsAdapter
+
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
     private val TAG: String = this.javaClass.name.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSavedNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
+
 
         setUpRecyclerView()
         newsAdapter.setOnItemClickListener {
@@ -79,7 +85,7 @@ class SavedNewsFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        newsAdapter = NewsAdapter()
+//        newsAdapter = NewsAdapter()
         binding.rvSavedNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
